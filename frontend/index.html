@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <title>LiterAlura</title>
+</head>
+<body>
+
+  <header>
+    <img src="./assets/icons/alura-a-ico.svg" alt="logo-alura" class="logo-alura">
+    <h1 class="logo-title">LiterAlura</h1>
+    <h3 class="logo-description">Challenge Alura ONE G7</h3>
+  </header>
+
+  <main>
+    <div class="book-search-content">
+      <h2>Livros</h2>
+      <select name="search_type_books" id="search-type-book" class="input size-150x">
+        <option value="default" class="false-disabled" selected>Selecione um tipo</option>
+        <option value="find-all-books">Todos</option>
+        <option value="find-by-title">Título</option>
+        <option value="find-by-language">Língua</option>
+      </select>
+
+      <div class="" id="book-inputs"></div>
+
+      <button type="button" class="input size-125x" id="btn-search-books">
+        Pesquisar <span class="material-icons">search</span>
+      </button>
+    </div>
+    <br>
+
+    <div class="author-search-content">
+      <h2>Autores</h2>
+      <select name="search_type_authors" id="search-type-authors" class="input size-150x">
+        <option value="default" class="false-disabled" selected>Selecione um tipo</option>
+        <option value="find-all" selected>Todos</option>
+        <option value="find-by-alive-after">Vivos Em</option>
+      </select>
+
+      <div id="authors-inputs"></div>
+
+      <button type="button" id="btn-search-authors" class="input size-125x">
+        Pesquisar <span class="material-icons">search</span>
+      </button>
+    </div>
+    <br>
+
+    <div class="pagination-search-content">
+      <h2>Paginação</h2>
+      <input type="number" width="125px" min="1" placeholder="Página" id="in-page" class="input size-125x">
+      <input type="number" width="125px" min="5" max="50" placeholder="Tamanho" id="in-page-size" class="input size-125x">
+    </div>
+    <br>
+
+    <div class="alert-content" id="alert-componet-content"></div>
+    <br>
+
+    <h2>Livros</h2>
+    <ul class="list-content" id="book-content-description"></ul>
+    <hr>
+
+    <h2>Autores</h2>
+    <ul class="list-content" id="author-content-description"></ul>
+  </main>
+
+  <footer>
+    <div class="created-by">
+      <p class="created-by-name">Mauricio Mityo Hidani</p>
+      <a href="https://www.linkedin.com/in/mauricio-hidani/" target="_blank" class="created-by-linkedin">Linkedin</a>
+      <a href="https://github.com/mauricioHidani" target="_blank" rel="noopener noreferrer">Github</a>
+    </div>
+    <div class="partners">
+      <p class="connect-partners">Apoio programa ONE G7</p>
+      <a href="https://www.alura.com.br/" target="_blank" rel="noopener noreferrer">@Alura</a>
+      <a href="https://www.oracle.com/br/" target="_blank" rel="noopener noreferrer">@Oracle</a>
+    </div>
+    <div class="since">
+      São Paulo, 2024 #ChallengesAluraOneG7
+    </div>
+  </footer>
+
+  <script type="module" type="text/javascript" src="./assets/js/bookService.js"></script>
+  <script type="module" type="text/javascript" src="./assets/js/authorService.js"></script>
+    
+</body>
+</html>
