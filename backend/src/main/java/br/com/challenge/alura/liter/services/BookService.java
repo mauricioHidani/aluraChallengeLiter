@@ -71,7 +71,7 @@ public class BookService {
     }
 
     public Page<Book> findByLanguage(String language, Pageable pageable) {
-        String targetLanguage = findTargetLanguage(language);
+        final var targetLanguage = findTargetLanguage(language);
         final var founded = bookRepository.findByLanguages_Language(targetLanguage, pageable);
         if (founded.isEmpty()) {
             throw new NotFoundException(
