@@ -38,4 +38,15 @@ public class AuthorService {
         return founded;
     }
 
+    public Author findByName(String name) {
+        final var founded = authorRepository.findByName(name);
+        if (founded.isEmpty()) {
+            throw new NotFoundException(
+                "Não foi encontrado o autor especificado"
+            );
+        }
+
+        return founded.get();
+    }
+
 }
