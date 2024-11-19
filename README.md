@@ -8,7 +8,7 @@
 ![Static Badge](https://img.shields.io/badge/HTML5-%23E34F26?style=for-the-badge&logo=html5&labelColor=black)
 ![Static Badge](https://img.shields.io/badge/CSS3-%231572B6?style=for-the-badge&logo=css3&logoColor=%231572B6&labelColor=black)
 
-![LiterAlura](https://github.com/user-attachments/assets/939c7227-6946-4843-bee2-03311d1d37d5)
+![LiterAlura](https://github.com/user-attachments/assets/1d249375-fdda-4422-8a0b-1fe7a51e5511)
 
 ## Descrição do Desafio
 A aplicação deve conseguir:
