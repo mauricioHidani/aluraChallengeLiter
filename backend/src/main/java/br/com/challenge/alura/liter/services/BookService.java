@@ -82,6 +82,18 @@ public class BookService {
         return founded;
     }
 
+    public Long countByLanguage(String language) {
+        final var targetLanguage = findTargetLanguage(language);
+        final var result = bookRepository.countByLanguage(targetLanguage);
+        if (result == 0) {
+            throw new NotFoundException(
+                "Não foram encontrado livros correspondentes a linguagem indicada."
+            );
+        }
+
+        return result;
+    }
+
     private void saveAuthor(Book book) {
         final var authorFounded = authorRepository.findByName(book.getAuthor().getName());
         if (authorFounded.isEmpty()) {
