@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_liter_alura
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: liter_alura_db
+    ports:
+      - '15432:5432'
+    volumes:
+      - postgres_alura_liter_data:/var/lib/postgres/data
+    networks:
+      - postgres_alura_liter_network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: alura_liter@pgadmin.com
+      PGADMIN_DEFAULT_PASSWORD: aluraLiter
+    ports:
+      - '15433:80'
+    depends_on:
+      - postgres
+    networks:
+      - postgres_alura_liter_network
+
+volumes:
+  postgres_alura_liter_data:
+
+networks:
+  postgres_alura_liter_network:
+    driver: bridge
