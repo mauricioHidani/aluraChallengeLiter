@@ -130,3 +130,7 @@ footer a:hover {
 .author-birth-death {
   font-style: italic;
 }
+
+.content-field { display: flex; align-items: center; }
+.bold-field { font-weight: 600; }
+.field { font-style: italic; }
