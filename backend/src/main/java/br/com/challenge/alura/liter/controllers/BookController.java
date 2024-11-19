@@ -58,4 +58,17 @@ public class BookController {
                 .body(result.getContent());
     }
 
+    @GetMapping("/language/count/{language}")
+    public ResponseEntity<Long> countByLanguage(@PathVariable String language) {
+        final var result = bookService.countByLanguage(language);
+        final var findLanguageUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/v1/books/languages/" + language)
+                .queryParam("page", "0")
+                .queryParam("size", "10")
+                .toUriString();
+        return ResponseEntity.ok()
+                .header("Collection", findLanguageUrl)
+                .body(result);
+    }
+
 }

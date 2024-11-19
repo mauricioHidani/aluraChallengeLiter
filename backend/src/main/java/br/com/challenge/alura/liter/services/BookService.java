@@ -71,7 +71,7 @@ public class BookService {
     }
 
     public Page<Book> findByLanguage(String language, Pageable pageable) {
-        String targetLanguage = findTargetLanguage(language);
+        final var targetLanguage = findTargetLanguage(language);
         final var founded = bookRepository.findByLanguages_Language(targetLanguage, pageable);
         if (founded.isEmpty()) {
             throw new NotFoundException(
@@ -80,6 +80,18 @@ public class BookService {
         }
 
         return founded;
+    }
+
+    public Long countByLanguage(String language) {
+        final var targetLanguage = findTargetLanguage(language);
+        final var result = bookRepository.countByLanguage(targetLanguage);
+        if (result == 0) {
+            throw new NotFoundException(
+                "Não foram encontrado livros correspondentes a linguagem indicada."
+            );
+        }
+
+        return result;
     }
 
     private void saveAuthor(Book book) {
