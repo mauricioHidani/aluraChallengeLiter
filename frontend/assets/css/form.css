@@ -1,0 +1,29 @@
+
+.input {
+  padding: 0 .52rem;
+  border-radius: 12px;
+  border: 1px solid #333;
+  height: 2.25rem;
+}
+
+button.input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .52rem;
+  cursor: pointer;
+}
+
+.false-disabled {
+  font-style: italic;
+}
+
+.input.size-125x {
+  width: 125px;
+}
+.input.size-150x {
+  width: 150px;
+}
+.input.size-250x {
+  width: 250px;
+}
