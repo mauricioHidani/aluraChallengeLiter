@@ -16,6 +16,7 @@ const SearchType = {
   FIND_ALL: 'find-all-books',
   FIND_BY_TITLE: 'find-by-title',
   FIND_BY_LANGUAGE: 'find-by-language',
+  COUNT_BY_LANGUAGE: 'count-by-language',
 }
 
 selectSearchType.addEventListener('change', (e) => {
@@ -25,6 +26,7 @@ selectSearchType.addEventListener('change', (e) => {
     case SearchType.FIND_ALL: build_FindAllBooks(); break;
     case SearchType.FIND_BY_TITLE: build_FindByTitle(); break;
     case SearchType.FIND_BY_LANGUAGE: build_FindByLanguage(); break;
+    case SearchType.COUNT_BY_LANGUAGE: build_CountByLanguage(); break;
     default: alertMessage(`Tipo de pesquisa para livros é inválida`); break;
   }
 });
@@ -34,6 +36,7 @@ btnSearch.addEventListener('click', (e) => {
     case SearchType.FIND_ALL: findAllBooks(); break;
     case SearchType.FIND_BY_TITLE: findByTitle(); break;
     case SearchType.FIND_BY_LANGUAGE: findByLanguage(); break;
+    case SearchType.COUNT_BY_LANGUAGE: countByLanguage(); break;
   }
 });
 
@@ -71,6 +74,18 @@ function build_FindByLanguage() {
       placeholder="Digite língua usado no livro" 
       class="input size-250x" 
       id="in-book-language"
+    >
+  `;
+  clearAlert();
+}
+
+function build_CountByLanguage() {
+  inputsComponent.innerHTML = `
+    <input 
+      type="text" 
+      placeholder="Digite a língua para contar os livros" 
+      class="input size-250x" 
+      id="in-book-language-count"
     >
   `;
   clearAlert();
@@ -145,4 +160,22 @@ async function findByLanguage() {
   const json = await response.json();
   showAlert(response, json);
   showDescription(json);
+}
+
+async function countByLanguage() {
+  const language = document.querySelector('#in-book-language-count').value;
+
+  const response = await fetch(`${configs.baseURL}/v1/books/language/count/${language}`)
+    .then(response => response)
+    .catch(error => console.error(error));
+
+  const json = await response.json();
+  showAlert(response, json);
+
+  description.innerHTML = `
+    <p>
+      <span class="bold-field">Quantidade de livros em ${language}:</span>&nbsp;
+      <span class="field">${json}</span>
+    </p>
+  `;
 }
