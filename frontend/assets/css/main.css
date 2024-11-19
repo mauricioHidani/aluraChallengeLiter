@@ -1,0 +1,132 @@
+@import "./form.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+h1, h2 {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+header {
+  margin: 2rem;
+  display: grid;
+  align-items: center;
+  grid-template-areas: "logo-alura logo-title"
+                       "logo-alura logo-description";
+  width: 20rem;
+}
+.logo-alura {
+  grid-area: logo-alura;
+}
+.logo-title {
+  grid-area: logo-title;
+}
+.logo-description {
+  grid-area: logo-description;
+}
+
+main {
+  padding: 4rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #2b2d42;
+}
+footer .created-by-name {
+  font-weight: 700;
+  color: #edf2f4;
+}
+footer .partners {
+  margin-top: 1rem;
+}
+footer .connect-partners {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #b6bbbd;
+}
+footer .since {
+  padding-top: .52rem;
+  font-size: .8rem;
+  color: #b6bbbd;
+}
+footer a {
+  text-decoration: none;
+  color: #edf2f4;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+.book-search-content, .author-search-content, .pagination-search-content {
+  display: flex;
+  align-items: center;
+  gap: .52rem;
+  justify-content: start;
+}
+
+#alert-componet-content {
+  visibility: hidden;
+}
+.alert-content {
+  padding: 1.52rem;
+  background: #ef233c;
+  color: #edf2f4;
+}
+.alert-title {
+  font-weight: 700;
+}
+.alert-message {
+  display: flex;
+  align-items: center;
+  gap: .52rem;
+  font-style: italic;
+}
+
+.list-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .52rem;
+  list-style: none;
+}
+.book-title {
+  font-style: italic;
+  font-weight: 600;
+}
+.book-author {
+  font-size: .9rem;
+  color: #333;
+}
+.book-languages, .book-downloads {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.book-languages-target, .book-downloads-target {
+  font-weight: 600;
+}
+.book-languages-value, .book-downloads-value {
+  font-style: italic;
+  color: #2b2d42;
+}
+
+.author-description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.author-name {
+  font-weight: 600;
+}
+.author-birth-death {
+  font-style: italic;
+}
