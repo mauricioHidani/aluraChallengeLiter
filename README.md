@@ -57,3 +57,30 @@ Exemplo de configuração
 - `${POSTGRES_USERNAME}`: `postgres`
 - `${POSTGRES_PASSWORD}`: `postgres`
 
+## Descrição em imagens
+**Tela inicial**<br>
+![image](https://github.com/user-attachments/assets/480c3356-1983-414a-992d-f378c7d30e39)
+
+**Consultar livro por titulo**<br>
+![image](https://github.com/user-attachments/assets/5653dbbb-a51b-4cb0-aefe-b5199222c135)
+
+**Consultar todos os livros**<br>
+![image](https://github.com/user-attachments/assets/f9d2ac5f-d6d4-46f3-9884-8093e431e7a2)
+
+**Consultar Top10 livros mais baixados**<br>
+![image](https://github.com/user-attachments/assets/11f0f11f-3f7b-4bd2-b3ac-fccbf574c826)
+
+**Consultar livro por língua**<br>
+![image](https://github.com/user-attachments/assets/79d70485-cd43-4dfe-91fc-61390726d822)
+
+**Consultar número de livros de determinada língua**<br>
+![image](https://github.com/user-attachments/assets/8c62f344-8260-4a66-9a46-414153b72570)
+
+**Consultar autores cadastrados**<br>
+![image](https://github.com/user-attachments/assets/d0845291-58b1-469d-a767-640caabfcc49)
+
+**Consultar autores vivos em determinado ano**<br>
+![image](https://github.com/user-attachments/assets/1d34e167-9708-47dd-b94f-6caec83a6cac)
+
+**Consultar autor por nome**<br>
+![image](https://github.com/user-attachments/assets/fdc77a5b-5981-433a-b4fe-aa5b369c4aa3)
