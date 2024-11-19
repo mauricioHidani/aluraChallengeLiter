@@ -17,7 +17,12 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     Page<Book> findByLanguages_Language(String language, Pageable pageable);
 
+    List<Book> findTop10ByOrderByDownloadCountDesc();
+
     @Query("SELECT COUNT(b) FROM Book b JOIN b.languages l WHERE l.language = :language")
     Long countByLanguage(@Param("language") String language);
+
+    @Query("SELECT AVG(b.downloadCount) FROM Book b")
+    Long averageDownloadCount();
 
 }

@@ -3,6 +3,8 @@ package br.com.challenge.alura.liter.services;
 import br.com.challenge.alura.liter.exceptions.NotFoundException;
 import br.com.challenge.alura.liter.models.converters.BookConverter;
 import br.com.challenge.alura.liter.models.entites.Book;
+import br.com.challenge.alura.liter.models.transfers.BookStatisticResponse;
+import br.com.challenge.alura.liter.models.transfers.BookTop10Response;
 import br.com.challenge.alura.liter.models.transfers.GutendexResponse;
 import br.com.challenge.alura.liter.models.transfers.LanguageRequest;
 import br.com.challenge.alura.liter.repositories.AuthorRepository;
@@ -59,15 +61,25 @@ public class BookService {
         return founded;
     }
 
-    public Page<Book> findAll(Pageable pageable) {
-        final var founded = bookRepository.findAll(pageable);
+    public Page<BookStatisticResponse> findAll(Pageable pageable) {
+        final Page<Book> founded = bookRepository.findAll(pageable);
         if (founded.isEmpty()) {
             throw new NotFoundException(
                 "Não foram encontrados livros cadastrados"
             );
         }
+        final var averageDownloadCount = bookRepository.averageDownloadCount();
 
-        return founded;
+        return founded.map(e -> new BookStatisticResponse(
+            e.getId(),
+            e.getTitle(),
+            e.getAuthor(),
+            e.getImageUrl(),
+            e.getLanguages(),
+            e.getDownloadCount(),
+            averageDownloadCount,
+            e.getDownloadCount() > averageDownloadCount
+        ));
     }
 
     public Page<Book> findByLanguage(String language, Pageable pageable) {
@@ -92,6 +104,26 @@ public class BookService {
         }
 
         return result;
+    }
+
+    public BookTop10Response findTop10() {
+        final var founded = bookRepository.findTop10ByOrderByDownloadCountDesc();
+        if (founded.isEmpty()) {
+            throw new NotFoundException(
+                "Não foram encontrados os top 10 livros."
+            );
+        }
+        final var statistical = founded.stream()
+                .filter(e -> e.getDownloadCount() > 0)
+                .collect(Collectors.summarizingLong(Book::getDownloadCount));
+
+        return new BookTop10Response(
+            statistical.getAverage(),
+            statistical.getMax(),
+            statistical.getMin(),
+            statistical.getCount(),
+            founded
+        );
     }
 
     private void saveAuthor(Book book) {
