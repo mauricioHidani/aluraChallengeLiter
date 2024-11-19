@@ -15,6 +15,7 @@ const SearchType = {
   DEFAULT: 'default',
   FIND_ALL: 'find-all',
   FIND_BY_ALIVE_AFTER: 'find-by-alive-after',
+  FIND_BY_NAME: 'find-by-name',
 }
 
 selectSearchType.addEventListener('change', (e) => {
@@ -23,6 +24,7 @@ selectSearchType.addEventListener('change', (e) => {
     case SearchType.DEFAULT: clearAlert(); break;
     case SearchType.FIND_ALL: build_FindAllAuthors(); break;
     case SearchType.FIND_BY_ALIVE_AFTER: build_FindByAliveAfter(); break;
+    case SearchType.FIND_BY_NAME: build_FindByName(); break;
     default: alertMessage(`Tipo de pesquisa para autores é inválida`); break;
   }
 });
@@ -49,6 +51,18 @@ function build_FindByAliveAfter() {
       placeholder="Informe o ano dos autores vivos a partir dele" 
       class="input size-250x" 
       id="in-author-alive"
+    >
+  `;
+  clearAlert();
+}
+
+function build_FindByName() {
+  inputsComponent.innerHTML = `
+    <input 
+      type="text" 
+      placeholder="Digite o nome autor" 
+      class="input size-250x" 
+      id="in-author-name"
     >
   `;
   clearAlert();
@@ -85,6 +99,7 @@ btnSearch.addEventListener('click', (e) => {
   switch (searchType) {
     case SearchType.FIND_ALL: findAll(); break;
     case SearchType.FIND_BY_ALIVE_AFTER: findByAliveAfter(); break;
+    case SearchType.FIND_BY_NAME: findByName(); break;
   }
 });
 
@@ -113,4 +128,21 @@ async function findByAliveAfter() {
   const json = await response.json();
   showAlert(response, json);
   showDescription(json);
+}
+
+async function findByName() {
+  const name = document.querySelector('#in-author-name').value;
+  
+  const response = await fetch(`${configs.baseURL}/v1/authors/name/${name}`)
+  .then(response => response)
+  .catch(error => console.error(error));
+  
+  const json = await response.json();
+  showAlert(response, json);
+  description.innerHTML = `
+    <p class="author-description">
+      <span class="author-name">${json.name}<span> | 
+      <span class="author-birth-death">${json.birthYear}-${json.deathYear}</span>
+    </p>
+  `;
 }

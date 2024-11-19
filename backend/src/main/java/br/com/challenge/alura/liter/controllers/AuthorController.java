@@ -4,10 +4,7 @@ import br.com.challenge.alura.liter.models.entites.Author;
 import br.com.challenge.alura.liter.services.AuthorService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
@@ -56,6 +53,19 @@ public class AuthorController {
         return ResponseEntity.ok()
                 .header("X-Next-Page", nextPageUrl != null ?  nextPageUrl : "")
                 .body(result.getContent());
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Author> findByName(@PathVariable String name) {
+        final var result = authorService.findByName(name);
+        final var collectionHeaderUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/v1/authors")
+                .queryParam("page", "0")
+                .queryParam("size", "10")
+                .toUriString();
+        return ResponseEntity.ok()
+                .header("Collection", collectionHeaderUri)
+                .body(result);
     }
 
 }
